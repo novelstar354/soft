@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>STACROSOFT</title>
+
+<link rel="icon" href="stacrosoft.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* 背景 */
+
+.bg{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,#103a8f44 0%,transparent 35%),
+    radial-gradient(circle at bottom,#00b7ff22 0%,transparent 40%),
+    linear-gradient(180deg,#050816,#02040d);
+    z-index:-2;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:40px 40px;
+    z-index:-1;
+    animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* Header */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    z-index:999;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:3px;
+    color:#4fd4ff;
+    text-shadow:0 0 15px #00bfff;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    position:relative;
+    transition:0.3s;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:#42cfff;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#6fdcff;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 50px;
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(55px,9vw,120px);
+    line-height:1;
+    margin-bottom:25px;
+    color:white;
+    text-shadow:
+    0 0 15px #3ec9ff,
+    0 0 40px #0077ff;
+}
+
+.hero p{
+    font-size:1.2rem;
+    color:#c7d4ff;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:16px 34px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.primary{
+    background:linear-gradient(135deg,#00b7ff,#005dff);
+    color:white;
+    box-shadow:0 0 25px #008cff88;
+}
+
+.primary:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+.secondary{
+    border:1px solid #4ecfff;
+    color:#7fdfff;
+}
+
+.secondary:hover{
+    background:#0d2448;
+}
+
+/* section */
+
+section{
+    padding:100px 8%;
+}
+
+.section-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:42px;
+    margin-bottom:50px;
+    text-align:center;
+    color:#69d7ff;
+}
+
+/* cards */
+
+/* cards */
+
+/* PRODUCTS */
+
+.grid-cards{
+    display:grid;
+
+    /* 3列 */
+    grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+    gap:24px;
+
+    align-items:start;
+}
+
+/* card */
+
+.card{
+    width:100%;
+    min-width:0;
+}
+
+/* タブレット */
+
+@media(max-width:1000px){
+
+    .grid-cards{
+        grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    }
+
+}
+
+/* スマホ */
+
+@media(max-width:700px){
+
+    .grid-cards{
+        grid-template-columns:
+        repeat(1,minmax(0,1fr));
+    }
+
+}
+/* card */
+
+.card{
+    background:rgba(255,255,255,0.04);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:24px;
+
+    /* 余白も少し減らす */
+    padding:24px;
+
+    backdrop-filter:blur(12px);
+
+    transition:0.35s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        transparent,
+        #00bfff18,
+        transparent
+    );
+
+    opacity:0;
+
+    transition:0.4s;
+
+    /* ←追加 */
+    pointer-events:none;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#4fd6ff;
+    box-shadow:0 0 35px #00aaff33;
+}
+
+.card:hover::before{
+    opacity:1;
+}
+
+.card h3{
+    font-size:20px;
+    line-height:1.5;
+}
+
+.card p{
+    color:#d6e4ff;
+    line-height:1.7;
+}
+
+/* stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat{
+    padding:40px;
+    border-radius:24px;
+    text-align:center;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.stat h2{
+    font-size:55px;
+    color:#56d6ff;
+    margin-bottom:10px;
+    font-family:'Orbitron',sans-serif;
+}
+
+/* footer */
+
+footer{
+    padding:50px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+    color:#9eb2d8;
+    background:#03050f;
+}
+
+/* floating orb */
+
+.orb{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#00aaff22;
+    filter:blur(70px);
+    top:-100px;
+    right:-100px;
+    z-index:-1;
+    animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(35px);
+    }
+}
+
+/* responsive */
+
+@media(max-width:850px){
+
+    nav{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+}
+/* 追加CSS */
+
+/* headerアニメーション */
+
+header{
+    transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+    box-shadow:
+0 10px 40px rgba(0,0,0,0.25);
+}
+
+header.hide{
+    transform:translateY(-120%);
+    opacity:0;
+}
+
+/* ハンバーガー改良 */
+
+.hamburger{
+    position:fixed;
+    top:22px;
+    right:28px;
+
+    width:58px;
+    height:58px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(20,40,90,0.88),
+        rgba(5,12,28,0.95)
+    );
+
+    border:1px solid rgba(120,220,255,0.18);
+
+    backdrop-filter:blur(14px);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+
+    cursor:pointer;
+
+    z-index:1400;
+
+    opacity:0;
+    pointer-events:none;
+
+    transform:
+    translateY(-25px)
+    scale(0.9);
+
+    transition:
+    opacity 0.35s,
+    transform 0.35s,
+    box-shadow 0.35s;
+}
+
+.hamburger.show{
+    opacity:1;
+    pointer-events:auto;
+
+    transform:
+    translateY(0)
+    scale(1);
+
+    box-shadow:
+    0 0 30px rgba(0,170,255,0.25),
+    inset 0 0 20px rgba(0,170,255,0.08);
+}
+
+.hamburger:hover{
+    transform:
+    translateY(0)
+    scale(1.08);
+
+    box-shadow:
+    0 0 40px rgba(0,190,255,0.4);
+}
+
+/* ハンバーガー線 修正版 */
+
+.hamburger span{
+    position:absolute;
+
+    width:25px;
+    height:2px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #7cecff,
+        #36b8ff
+    );
+
+    transition:
+    transform 0.35s ease,
+    opacity 0.25s ease,
+    top 0.35s ease;
+}
+
+/* 位置 */
+
+.hamburger span:nth-child(1){
+    top:20px;
+}
+
+.hamburger span:nth-child(2){
+    top:28px;
+}
+
+.hamburger span:nth-child(3){
+    top:36px;
+}
+
+/* ×アニメーション */
+
+.hamburger.active span:nth-child(1){
+    top:28px;
+
+    transform:rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+    top:28px;
+
+    transform:rotate(-45deg);
+}
+
+/* モバイルメニュー改良 */
+
+.mobile-menu{
+    position:fixed;
+    top:0;
+    right:-340px;
+
+    width:300px;
+    height:100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(5,10,25,0.97),
+        rgba(3,6,18,0.98)
+    );
+
+    backdrop-filter:blur(20px);
+
+    z-index:1300;
+
+    padding:120px 38px;
+
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+
+    transition:0.4s;
+
+    border-left:
+    1px solid rgba(100,220,255,0.15);
+
+    box-shadow:
+    -20px 0 60px rgba(0,0,0,0.4);
+}
+
+.mobile-menu.active{
+    right:0;
+}
+
+.mobile-menu a{
+    color:#f4fbff;
+    text-decoration:none;
+
+    font-size:1.15rem;
+    font-weight:600;
+
+    position:relative;
+
+    transition:0.3s;
+}
+
+.mobile-menu a:hover{
+    color:#72deff;
+    transform:translateX(6px);
+}
+
+/* TOPボタン改良 */
+
+#topBtn{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+
+    width:72px;
+    height:72px;
+
+    border:none;
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #00bfff,
+        #0048ff
+    );
+
+    color:white;
+
+    font-size:28px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:1500;
+
+    opacity:0;
+    pointer-events:none;
+
+    transform:
+    translateY(30px)
+    scale(0.9);
+
+    transition:
+    opacity 0.35s,
+    transform 0.35s,
+    box-shadow 0.35s;
+}
+
+#topBtn.show{
+    opacity:1;
+    pointer-events:auto;
+
+    transform:
+    translateY(0)
+    scale(1);
+
+    box-shadow:
+    0 0 35px rgba(0,140,255,0.45),
+    0 0 80px rgba(0,120,255,0.25);
+}
+
+#topBtn:hover{
+    transform:
+    translateY(-5px)
+    scale(1.08);
+
+    box-shadow:
+    0 0 50px rgba(0,180,255,0.7),
+    0 0 90px rgba(0,120,255,0.35);
+}
+
+#topBtn::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+
+    pointer-events:none;
+}
+
+/* 製品紹介 */
+
+.showcase-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.showcase-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    height:420px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    background:#081120;
+}
+
+.showcase-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    transition:0.5s;
+}
+
+.showcase-card:hover img{
+    transform:scale(1.08);
+}
+
+.showcase-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.88),
+        rgba(0,0,0,0.15)
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    padding:30px;
+}
+
+.showcase-overlay h3{
+    font-size:32px;
+    margin-bottom:10px;
+    color:#79e4ff;
+}
+
+.showcase-overlay p{
+    color:#dbe9ff;
+    line-height:1.7;
+}
+/* ロゴ */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:3px;
+
+    color:#4fd4ff;
+
+    text-shadow:
+    0 0 15px #00bfff;
+}
+
+.logo img{
+    width:52px;
+    height:52px;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(0 0 10px #00aaff)
+    drop-shadow(0 0 25px #008cff88);
+
+    transition:0.35s;
+}
+
+.logo:hover img{
+    transform:
+    rotate(-6deg)
+    scale(1.08);
+}
+/* 製品画像 */
+
+.product-img{
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    margin-bottom:22px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    background:#081120;
+
+    transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    filter 0.45s ease;
+}
+
+/* hover */
+
+.card:hover .product-img{
+    transform:scale(1.04);
+
+    filter:brightness(1.08);
+
+    box-shadow:
+    0 0 30px rgba(0,180,255,0.25);
+}
+
+/* 発光ライン */
+
+.product-img{
+    box-shadow:
+    inset 0 0 20px rgba(0,140,255,0.08),
+    0 0 15px rgba(0,100,255,0.12);
+}
+
+/* モバイル */
+
+@media(max-width:700px){
+
+    .product-img{
+        height:180px;
+    }
+
+}
+.card a{
+    color:#72deff;
+    text-decoration:none;
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.card a:hover{
+    color:white;
+
+    text-shadow:
+    0 0 12px #00bfff;
+}
+@media(max-width:700px){
+
+    .logo{
+        font-size:18px;
+        letter-spacing:1px;
+    }
+
+    .logo img{
+        width:40px;
+        height:40px;
+    }
+
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="orb"></div>
+
+<!-- header をこれに変更 -->
+<header id="header">
+
+<!-- logo部分をこれに変更 -->
+
+<div class="logo">
+
+<img src="stacrosoft.png" alt="STACROSOFT Logo">
+
+<span>STACROSOFT</span>
+
+</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#ai">AI</a>
+<a href="#cloud">Cloud</a>
+</nav>
+
+</header>
+
+<!-- ハンバーガーメニュー -->
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobileMenu">
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#ai">AI</a>
+<a href="#cloud">Cloud</a>
+</div>
+
+
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>POWERING<br>THE STARS.</h1>
+
+<p>
+スター帝国最大級のソフトウェア企業。<br>
+AI、OS、クラウド、量子ネットワーク技術で帝国の未来を支える。
+</p>
+
+<div class="buttons">
+<a class="btn primary" href="#products">製品を見る</a>
+<a class="btn secondary" href="#about">企業情報</a>
+</div>
+
+</div>
+
+</section>
+<section id="about">
+
+<h2 class="section-title">ABOUT</h2>
+
+<div class="grid-cards">
+
+<div class="card">
+
+<h3>Company</h3>
+
+<p>
+STACROSOFT は、スター帝国最大級のソフトウェア・AI企業です。<br><br>
+
+OS、クラウド、量子ネットワーク、AI技術を中心に、
+帝国全域のデジタルインフラを支えています。
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Technology</h3>
+
+<p>
+独自の量子演算システムと次世代AI技術を活用し、
+高速・安全・未来的なサービスを提供。<br><br>
+
+StarOS や Nebula Cloud は、
+帝国中の企業や研究機関で利用されています。
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Mission</h3>
+
+<p>
+「技術によって帝国の未来を創る。」<br><br>
+
+STACROSOFT は、
+人々の生活・通信・創造を支える
+次世代テクノロジーの開発を続けています。
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Headquarters</h3>
+
+<p>
+Central Star City に存在する
+超高層テクノロジータワーを本社とし、
+AI研究・量子通信・宇宙ネットワーク開発を行っています。
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Security</h3>
+
+<p>
+帝国レベルのサイバーセキュリティシステムを導入。<br><br>
+
+大規模データ保護と
+次世代暗号化ネットワークにより、
+安全な通信環境を実現しています。
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Future</h3>
+
+<p>
+STACROSOFT は、
+宇宙通信・ホログラムUI・ニューラルインターフェースなど、
+未来社会を支える革新的技術を開発しています。
+</p>
+
+</div>
+
+</div>
+
+</section>
+<section id="products">
+
+<h2 class="section-title">PRODUCTS</h2>
+
+<div class="grid-cards">
+
+<!--<div class="card">
+<h3>StarOS</h3>
+<p>
+スター帝国標準OS。高速起動、AI統合、近未来UIを搭載した次世代システム。
+</p>
+</div>
+
+<div class="card">
+<h3>Nova AI</h3>
+<p>
+超高性能AIアシスタント。会話、戦略分析、画像認識、音声制御に対応。
+</p>
+</div>
+
+<div class="card">
+<h3>Star Edge</h3>
+<p>
+帝国ネットワーク向けに最適化された超高速ブラウザ。
+</p>
+</div>
+
+<div class="card">
+<h3>Nebula Cloud</h3>
+<p>
+量子サーバーを利用した大規模クラウドシステム。
+</p>
+</div>
+-->
+
+<div class="card">
+        <img class="product-img" src="https://cdn-icons-png.freepik.com/256/18716/18716170.png?semt=ais_white_label"alt="">
+        <h3>Star Edge</h3>
+        <p>いろんな検索エンジンを使って検索することができます。使いたい方は<a href="https://novelstar354.github.io/search">こちら</a>。</p>
+</div>
+     <div class="card">
+    <img class="product-img" src="https://cdn-icons-png.freepik.com/256/5968/5968557.png?semt=ais_white_label">
+    <h3>Pixel</h3>
+    <p>シンプルなスプレッドシートです。関数も使えます。使いたい方は<a href="https://novelstar354.github.io/excel">こちら</a>。</p>
+    </div>
+      <div class="card">
+          <img class="product-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1NKF2PBsyNdpEcutEiAZgbE6xie_0T0UFnA&s">
+          <h3>TS code</h3>
+          <p>JavaScriptに対応しているテキストエディタです。使いたい方は<a href="https://novelstar354.github.io/text">こちら</a>。</p>
+          </div>
+      <div class="card">
+          <img class="product-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZKqgVjym7mhISgQOL0c5tkEnyOoiRBUyUfg&s">
+          <h3>Words</h3>
+          <p>テキスト専用のテキストエディタです。いろいろな機能があります。使いたい方は<a href="https://novelstar354.github.io/word">こちら</a>。</p>
+      </div>
+    <div class="card">
+          <img class="product-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwN3RfGrMOY85YJ3QQv9-U1DMN6mgZYxFW9g&s">
+          <h3>TScode HTML edition</h3>
+          <p>TSコードのhtml版です。いろんな機能が使えます。使いたい方は<a href="https://novelstar354.github.io/code">こちら</a>。</p>
+          </div>
+    </div>
+</section>
+
+<section id="ai">
+
+<h2 class="section-title">AI TECHNOLOGY</h2>
+
+<div class="grid-cards">
+
+<div class="card">
+<h3>Quantum AI</h3>
+<p>
+量子演算による超高速推論エンジンを搭載。
+</p>
+</div>
+
+<div class="card">
+<h3>Galaxy Security</h3>
+<p>
+帝国レベルのサイバー防衛システム。
+</p>
+</div>
+
+<div class="card">
+<h3>Neural Interface</h3>
+<p>
+思考支援型インターフェースで新しい操作体験を実現。
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="cloud">
+
+<h2 class="section-title">EMPIRE DATA</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h2>98%</h2>
+<p>帝国ネットワーク稼働率</p>
+</div>
+
+<div class="stat">
+<h2>14B+</h2>
+<p>クラウド接続デバイス</p>
+</div>
+
+<div class="stat">
+<h2>∞</h2>
+<p>量子データ処理能力</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2086 STACROSOFT IMPERIAL TECHNOLOGIES
+</p>
+
+</footer>
+<!-- TOPへ戻るボタン -->
+<button id="topBtn">↑</button>
+
+<script>
+
+const header = document.getElementById("header");
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+const topBtn = document.getElementById("topBtn");
+
+let lastScroll = 0;
+
+function closeMenu(){
+
+    mobileMenu.classList.remove("active");
+    hamburger.classList.remove("active");
+
+}
+
+window.addEventListener("scroll", () => {
+
+    const currentScroll = window.pageYOffset;
+
+    // 下スクロール
+    if(currentScroll > lastScroll && currentScroll > 120){
+
+        header.classList.add("hide");
+        hamburger.classList.add("show");
+
+    }
+
+    // 上スクロール
+    else{
+
+        header.classList.remove("hide");
+
+        // headerが見える時は非表示
+        hamburger.classList.remove("show");
+
+        closeMenu();
+
+    }
+
+    // TOPボタン
+    if(currentScroll > 300){
+
+        topBtn.classList.add("show");
+
+    }else{
+
+        topBtn.classList.remove("show");
+
+    }
+
+    // スクロールで閉じる
+    if(Math.abs(currentScroll - lastScroll) > 10){
+
+        closeMenu();
+
+    }
+
+    lastScroll = currentScroll;
+
+});
+
+hamburger.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    mobileMenu.classList.toggle("active");
+    hamburger.classList.toggle("active");
+
+});
+
+// メニュー内クリック時は閉じない
+mobileMenu.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+});
+
+// 外側クリックで閉じる
+document.addEventListener("click", () => {
+
+    closeMenu();
+
+});
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+</script>
+
+</body>
+</html>
